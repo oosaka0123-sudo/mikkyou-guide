@@ -1,0 +1,5 @@
+import fs from 'fs';import path from 'path';
+const root=process.cwd(),base='/mikkyou-guide';
+const html=[];for(const d of fs.readdirSync(root,{withFileTypes:true})){if(d.isFile()&&d.name.endsWith('.html'))html.push(path.join(root,d.name));if(d.isDirectory()&&!['.git','assets'].includes(d.name)){const p=path.join(root,d.name,'index.html');if(fs.existsSync(p))html.push(p)}}
+const broken=[];for(const file of html){const s=fs.readFileSync(file,'utf8');for(const m of s.matchAll(/href="([^"]+)"/g)){const h=m[1];if(!h.startsWith(base)||h.includes('#'))continue;const rel=h.slice(base.length).replace(/^\//,'').replace(/\/$/,'');if(path.extname(rel))continue;const target=rel?path.join(root,rel,'index.html'):path.join(root,'index.html');if(!fs.existsSync(target))broken.push(`${path.relative(root,file)} -> ${h}`)}}
+console.log(`HTML ${html.length}, broken ${broken.length}`);if(broken.length){console.log(broken.join('\n'));process.exit(1)}
