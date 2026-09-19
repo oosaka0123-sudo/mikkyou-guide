@@ -6,17 +6,18 @@
 <meta name="robots" content="noindex,nofollow,noarchive">
 <title>KS Video Preview</title>
 <style>
-:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#080b10;color:#f5f7fa;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh;display:grid;place-items:center;padding:20px}.wrap{width:min(100%,980px)}h1{font-size:clamp(22px,4vw,34px);margin:0 0 8px}.sub{color:#aab3c0;margin:0 0 18px;font-size:14px}.card{background:#111722;border:1px solid #273142;border-radius:18px;padding:12px;box-shadow:0 18px 60px rgba(0,0,0,.35)}video{display:block;width:100%;height:auto;border-radius:12px;background:#000}.note{margin:14px 4px 0;color:#8d98a8;font-size:12px;line-height:1.6}</style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#080b10;color:#f5f7fa;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:20px}.wrap{width:min(100%,980px);margin:auto}h1{font-size:clamp(22px,4vw,34px);margin:0 0 8px}.sub{color:#aab3c0;margin:0 0 18px}.grid{display:grid;gap:22px}.card{background:#111722;border:1px solid #273142;border-radius:18px;padding:12px;box-shadow:0 18px 60px rgba(0,0,0,.35)}h2{font-size:18px;margin:2px 2px 10px}video{display:block;width:100%;height:auto;border-radius:12px;background:#000}.note{margin:14px 4px 0;color:#8d98a8;font-size:12px;line-height:1.6}</style>
 </head>
 <body>
-<main class="wrap">`r`n<div style="position:absolute;left:-9999px">密教図譜 特設プレビュー</div>
-<h1>関西サーファーKS｜30秒プレビュー</h1>
-<p class="sub">YouTube動画・初版確認用</p>
-<div class="card"><video controls playsinline preload="metadata" src="./kansai_surfer_30s_v3.mp4?v=3"></video></div>
-<p class="note">このページはサイト本体からリンクしていない確認用ページです。検索エンジンにも登録しない設定です。</p>
+<main class="wrap">
+<div style="position:absolute;left:-9999px">密教図譜 特設プレビュー</div>
+<h1>関西サーファーKS｜ナレーション比較</h1>
+<p class="sub">同じ30秒動画で、男声と女声を聴き比べできます。</p>
+<div class="grid">
+<section class="card"><h2>男性｜Keita Neural</h2><video controls playsinline preload="metadata" src="./kansai_surfer_30s_v3.mp4?v=3"></video></section>
+<section class="card"><h2>女性｜Nanami Neural</h2><video controls playsinline preload="metadata" src="./kansai_surfer_30s_nanami.mp4?v=1"></video></section>
+</div>
+<p class="note">サイト本体からはリンクしていない確認用ページです。検索エンジンにも登録しない設定です。</p>
 </main>
 </body>
 </html>
-
-
-
