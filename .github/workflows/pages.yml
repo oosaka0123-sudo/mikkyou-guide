@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Inject SEO structured data
+        run: node prepare-seo.mjs
       - name: Verify internal links
         run: node check-links.mjs
       - name: Configure Pages
