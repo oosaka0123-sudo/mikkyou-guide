@@ -44,3 +44,30 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Notify IndexNow
+        continue-on-error: true
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const https = require('https');
+          const xml = fs.readFileSync('sitemap.xml','utf8');
+          const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1].replaceAll('&amp;','&'));
+          const key = '7b2cf8d3de2bd503111a01bf0c6628e6';
+          const body = JSON.stringify({
+            host: 'oosaka0123-sudo.github.io',
+            key,
+            keyLocation: 'https://oosaka0123-sudo.github.io/mikkyou-guide/' + key + '.txt',
+            urlList: urls
+          });
+          const req = https.request('https://api.indexnow.org/indexnow', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json; charset=utf-8','Content-Length':Buffer.byteLength(body)}
+          }, res => {
+            console.log('IndexNow status:', res.statusCode, 'URLs:', urls.length);
+            if (res.statusCode < 200 || res.statusCode >= 300) process.exitCode = 1;
+            res.resume();
+          });
+          req.on('error', e => { console.error(e); process.exitCode = 1; });
+          req.write(body); req.end();
+          NODE
