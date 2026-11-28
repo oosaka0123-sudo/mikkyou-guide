@@ -9,7 +9,7 @@ function walk(dir){
   });
 }
 const urls=[];
-for(const file of walk(root).filter(f=>f.endsWith(".html")&&!/^google.*\.html$/i.test(path.basename(f)))){
+for(const file of walk(root).filter(f=>f.endsWith(".html")&&!/^google.*\.html$/i.test(path.basename(f))&&path.basename(f)!=="404.html")){
   const s=fs.readFileSync(file,"utf8");
   const m=s.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)["']/i);
   if(m) urls.push(m[1]);
