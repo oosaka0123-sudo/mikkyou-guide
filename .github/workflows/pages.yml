@@ -23,10 +23,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Inject SEO structured data
+      - name: Normalize site navigation
+        run: node normalize-site.mjs
+      - name: Inject structured data
         run: node prepare-seo.mjs
-      - name: Verify internal links
-        run: node check-links.mjs
+      - name: Generate sitemap
+        run: node generate-sitemap.mjs
+      - name: Audit entire site
+        run: node audit-site.mjs
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
