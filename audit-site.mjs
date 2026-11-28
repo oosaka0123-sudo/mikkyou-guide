@@ -51,6 +51,14 @@ for(const file of htmlFiles){
   }
   if(desc.length<50) warnings.push(name+": short meta description ("+desc.length+")");
   if(desc.length>180) warnings.push(name+": long meta description ("+desc.length+")");
+  if(/^articles\/[^/]+\/index\.html$/.test(name)){
+    if(!s.includes("<h2>参照</h2>")) errors.push(name+": missing references section");
+    if(!s.includes("関連して読む")) errors.push(name+": missing related-reading section");
+    if(!s.includes('data-mikkyou-structured="1"')) errors.push(name+": missing Article structured data");
+  }
+  if(name!=="404.html" && !/^articles\/[^/]+\/index\.html$/.test(name) && !s.includes('data-mikkyou-page-structured="1"')){
+    errors.push(name+": missing page structured data");
+  }
 }
 
 const sitemapPath=path.join(root,"sitemap.xml");
