@@ -36,7 +36,7 @@ for(const file of htmlFiles){
   if(canonical){
     if(!canonical.startsWith(site+"/")) errors.push(name+": canonical outside site "+canonical);
     if(canonicals.has(canonical)) errors.push(name+": duplicate canonical with "+canonicals.get(canonical));
-    canonicals.set(canonical,name); publicUrls.add(canonical);
+    canonicals.set(canonical,name); if(name!=="404.html") publicUrls.add(canonical);
   }
   for(const m of s.matchAll(/href=["']([^"']+)["']/g)){
     const h=m[1];
